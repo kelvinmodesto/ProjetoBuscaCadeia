@@ -43,14 +43,12 @@ public class ArqEntrada {
 		return inicio + r.nextInt(limite);
 	}
 	public void calcularNumPadroes(){
-		Random r= new Random();
 		qtdPadroes=sortear(1,20);
 		}
 	public void calcularPadroes(){
 		calcularNumPadroes();
 		for(int qtd=0;qtd<qtdPadroes;qtd++){
 			int linha= sortear(0,texto.size());
-			ArrayList<String> listaLinha= new ArrayList<String>();
 			String[] lista= texto.get(linha).split(" ");
 			int elem= sortear(0,lista.length);
 			padroes.add(lista[elem]);
