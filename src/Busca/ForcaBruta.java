@@ -1,30 +1,36 @@
 package Busca;
 
+import java.util.ArrayList;
+
 public class ForcaBruta extends Busca {
-	
-	
-	public ForcaBruta() {
-		super();
-		
+
+	private ArrayList<String> texto;
+
+	public ForcaBruta(ArrayList<String> texto) {
+		this.texto = texto;
 	}
-	
+
+	private void buscaPorLinha(String padrao, String linha) {
+		int n = linha.length();
+		int m = padrao.length();
+		for (int i = 0; i < n - (m - 1); i++) {
+			int j = 0;
+			qtdComparacoes++;
+			while (j < m && padrao.charAt(j) == linha.charAt(i + j)) {
+				j++;
+					qtdComparacoes++;
+			}
+			if (j == m)
+				qtdEncontrados++;
+		}
+	}
+
 	@Override
 	public void buscar(String padrao) {
-		for(int t=0;t<this.getTexto().size();t++){
-			for(int i=0;i< this.getTexto().get(i).length();i++ ){
-				for(int j=0;j<padrao.length();j++){
-					int aux=0;
-					if(padrao.charAt(j)==this.getTexto().get(i).charAt(aux)){
-						this.incQtdComparacoes();
-						aux++;
-					}else{
-						break;
-					}
-					if(aux==padrao.length()){
-						this.incQtdPadroesEncontrados();	
-						}
-				}
-			}
+		qtdComparacoes = 0;
+		qtdEncontrados = 0;
+		for (int i = 0; i < texto.size(); i++) {
+			buscaPorLinha(padrao, texto.get(i));
 		}
 	}
 }

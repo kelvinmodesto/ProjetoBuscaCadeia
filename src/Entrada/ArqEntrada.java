@@ -1,4 +1,5 @@
 package Entrada;
+
 import java.io.BufferedReader;
 
 import java.io.File;
@@ -11,24 +12,33 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ArqEntrada {
-	private static final String NOME_ARQUIVO="entrada.txt";
 	private int qtdPadroes;
-	private ArrayList<String> padroes= new ArrayList<String>();
-	private ArrayList<String> texto= new ArrayList<String>();
-	
-	public ArqEntrada(){
-		this.read();
-		this.calcularPadroes();
+	private ArrayList<String> padroes;
+	private ArrayList<String> texto;
+
+	public ArqEntrada() {
+		padroes = new ArrayList<String>();
+		texto = new ArrayList<String>();
+		lerArquivo();
+		calcularPadroes();
 	}
-	
-	void read() {
-		File f = new File(NOME_ARQUIVO);
+
+	public ArrayList<String> getTexto() {
+		return texto;
+	}
+
+	public String getPadrao(int ind) {
+		return padroes.get(ind);
+	}
+
+	private void lerArquivo() {
+		File f = new File("entrada.txt");
 		InputStream is;
 		BufferedReader br;
 		try {
 			is = new FileInputStream(f);
 			br = new BufferedReader(new InputStreamReader(is));
-			while(br.ready()){
+			while (br.ready()) {
 				texto.add(br.readLine());
 			}
 			br.close();
@@ -38,35 +48,41 @@ public class ArqEntrada {
 			e.printStackTrace();
 		}
 	}
-	public int sortear(int inicio,int limite){
-		Random r= new Random();
+
+	private int sortear(int inicio, int limite) {
+		Random r = new Random();
 		return inicio + r.nextInt(limite);
 	}
-	public void calcularNumPadroes(){
-		qtdPadroes=sortear(1,20);
-		}
-	public void calcularPadroes(){
+
+	private void calcularNumPadroes() {
+		qtdPadroes = sortear(1, 20);
+	}
+
+	private void calcularPadroes() {
 		calcularNumPadroes();
-		for(int qtd=0;qtd<qtdPadroes;qtd++){
-			int linha= sortear(0,texto.size());
-			String[] lista= texto.get(linha).split(" ");
-			int elem= sortear(0,lista.length);
-			padroes.add(lista[elem]);
+		for (int qtd = 0; qtd < qtdPadroes; qtd++) {
+			int linha = sortear(0, texto.size());
+			String[] lista = texto.get(linha).split(" ");
+			int elem = sortear(0, lista.length);
+			if (!padroes.contains(lista[elem]))
+				padroes.add(lista[elem]);
+			else
+				qtd--;
 		}
 	}
-	public ArrayList<String> getTexto() {
-		return texto;
-	}
+
 	public int getQtdPadroes() {
 		return qtdPadroes;
 	}
-	public void imprimirTexto(){
-		for(int i=0;i<texto.size();i++){
+
+	public void imprimirTexto() {
+		for (int i = 0; i < texto.size(); i++) {
 			System.out.println(texto.get(i));
 		}
 	}
-	public void imprimirPadroes(){
-		for(int i=0;i<padroes.size();i++){
+
+	public void imprimirPadroes() {
+		for (int i = 0; i < padroes.size(); i++) {
 			System.out.println(padroes.get(i));
 		}
 	}
