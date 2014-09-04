@@ -3,6 +3,7 @@ package Busca;
 import java.util.ArrayList;
 
 //CLASSE INCOMPLETA
+@SuppressWarnings("unused")
 public class BoyerMore extends Busca {
 	private int tamAlfabeto;
 	private int[] last;

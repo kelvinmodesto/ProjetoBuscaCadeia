@@ -55,7 +55,8 @@ public class ArqEntrada {
 	}
 
 	private void calcularNumPadroes() {
-		qtdPadroes = sortear(1, 20);
+		//qtdPadroes = sortear(1, 20);
+		qtdPadroes = 1;
 	}
 
 	private void calcularPadroes() {

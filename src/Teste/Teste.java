@@ -1,16 +1,28 @@
 package Teste;
 
 import Busca.ForcaBruta;
+import Busca.KMP;
 import Entrada.ArqEntrada;
 
 public class Teste {
 
 	private ArqEntrada arqEntrada;
 	private ForcaBruta forcaBruta;
+	private KMP kmp;
 
 	public Teste() {
 		arqEntrada = new ArqEntrada();
 		forcaBruta = new ForcaBruta(arqEntrada.getTexto());
+		kmp = new KMP(arqEntrada.getTexto());
+	}
+	
+	private void buscarPorKMP(String padrao) {
+		System.out.println("Buscando o padrao: " + padrao);
+		kmp.buscar(padrao);
+		System.out.println("Qtd de Comparacoes: "
+				+ kmp.getQtdComparacoes());
+		System.out.println("Qtd de Encontrados: "
+				+ kmp.getQtdEncontrados());
 	}
 
 	private void buscarPorForcaBruta(String padrao) {
@@ -33,8 +45,14 @@ public class Teste {
 	public void buscarPadroes() {
 		gerarPadroes();
 		System.out.println("-------Buscando os Padroes--------");
+		System.out.println("---------Por Forca Bruta----------");
 		for (int i = 0; i < arqEntrada.getQtdPadroes(); i++) {
-			buscarPorForcaBruta(arqEntrada.getPadrao(i));
+			buscarPorForcaBruta(arqEntrada.getPadrao(i));			
+			System.out.println();
+		}
+		System.out.println("-------------Por KMP--------------");
+		for (int i = 0; i < arqEntrada.getQtdPadroes(); i++) {
+			buscarPorKMP(arqEntrada.getPadrao(i));
 			System.out.println();
 		}
 		System.out.println("----------Fim das Buscas----------");
