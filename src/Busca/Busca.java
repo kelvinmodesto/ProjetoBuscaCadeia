@@ -1,10 +1,14 @@
 package Busca;
 
+import java.util.ArrayList;
+
 public abstract class Busca {
+	protected ArrayList<String> texto;
 	protected int qtdComparacoes;
 	protected int qtdEncontrados;
 
-	public Busca() {
+	public Busca(ArrayList<String> texto) {
+		this.texto = texto;
 		this.qtdComparacoes = 0;
 		this.qtdEncontrados = 0;
 	}

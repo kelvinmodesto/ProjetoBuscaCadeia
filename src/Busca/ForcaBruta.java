@@ -7,7 +7,7 @@ public class ForcaBruta extends Busca {
 	private ArrayList<String> texto;
 
 	public ForcaBruta(ArrayList<String> texto) {
-		this.texto = texto;
+		super(texto);
 	}
 
 	private void buscaPorLinha(String padrao, String linha) {
