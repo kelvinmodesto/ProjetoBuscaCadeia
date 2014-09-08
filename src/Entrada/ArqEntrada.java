@@ -55,18 +55,22 @@ public class ArqEntrada {
 	}
 
 	private void calcularNumPadroes() {
-		//qtdPadroes = sortear(1, 20);
-		qtdPadroes = 1;
+		qtdPadroes = sortear(1, 20);
 	}
 
 	private void calcularPadroes() {
 		calcularNumPadroes();
+		String padrao;int linha,elem;
 		for (int qtd = 0; qtd < qtdPadroes; qtd++) {
-			int linha = sortear(0, texto.size());
+			linha = sortear(0, texto.size());
 			String[] lista = texto.get(linha).split(" ");
-			int elem = sortear(0, lista.length);
-			if (!padroes.contains(lista[elem]))
-				padroes.add(lista[elem]);
+			elem = sortear(0, lista.length);
+			padrao = lista[elem];
+			System.out.print(padrao+" -> ");
+			padrao = padrao.replaceAll("[().,;:!?]+","");
+			System.out.println(padrao);
+			if (!padroes.contains(padrao))
+				padroes.add(padrao);
 			else
 				qtd--;
 		}
@@ -86,5 +90,9 @@ public class ArqEntrada {
 		for (int i = 0; i < padroes.size(); i++) {
 			System.out.println(padroes.get(i));
 		}
+	}
+	
+	public static void main(String[] args) {
+		new ArqEntrada();
 	}
 }

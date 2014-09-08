@@ -8,27 +8,6 @@ public class BoyerMoore extends Busca {
 		super(texto);
 	}
 
-	/** Procurando Padrão **/
-
-	public void procuraPadrao(String texto, String padrao) {
-
-		char[] text = texto.toCharArray();
-
-		char[] pad = padrao.toCharArray();
-
-		int pos = indexPadrao(text, pad);
-
-		if (pos == -1) {
-
-			System.out.println("Padrão não encontrado!!");
-		}
-
-		else {
-
-			System.out.println("Padrão encontrado na Posição : " + pos);
-		}
-	}
-
 	/** Função para calcular o índice de padrão substring **/
 
 	public int indexPadrao(char[] texto, char[] padrao) {
@@ -49,8 +28,7 @@ public class BoyerMoore extends Busca {
 				if (j == 0) {
 					qtdEncontrados++;
 					return i;
-				}
-				else {
+				} else {
 					qtdComparacoes++;
 				}
 			}
@@ -93,7 +71,7 @@ public class BoyerMoore extends Busca {
 	 * ocorre incompatibilidade.
 	 **/
 
-	private int[] criaTabelaSalto (char[] pattern) {
+	private int[] criaTabelaSalto(char[] pattern) {
 
 		int[] tabela = new int[pattern.length];
 
@@ -124,7 +102,7 @@ public class BoyerMoore extends Busca {
 
 	/** função para verificar se [p: fim] é o prefixo padrão **/
 
-	private boolean isPrefixo (char[] padrao, int p) {
+	private boolean isPrefixo(char[] padrao, int p) {
 
 		for (int i = p, j = 0; i < padrao.length; ++i, ++j) {
 
@@ -153,6 +131,27 @@ public class BoyerMoore extends Busca {
 
 		return len;
 
+	}
+
+	/** Procurando Padrão **/
+
+	public void procuraPadrao(String texto, String padrao) {
+
+		char[] text = texto.toCharArray();
+
+		char[] pad = padrao.toCharArray();
+
+		int pos = indexPadrao(text, pad);
+
+		if (pos == -1) {
+
+			// Padrao nao encontrado
+		}
+
+		else {
+
+			// Padrao encontrado
+		}
 	}
 
 	@Override
