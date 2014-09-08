@@ -1,7 +1,6 @@
 package Teste;
 
 import Busca.BoyerMoore;
-import Busca.BoyerMore;
 import Busca.ForcaBruta;
 import Busca.KMP;
 import Entrada.ArqEntrada;
