@@ -10,51 +10,55 @@ public class BoyerMoore extends Busca {
 
 	/** Procurando Padrão **/
 
-	public void procuraPadrao(String texto, String padraop) {
+	public void procuraPadrao(String texto, String padrao) {
 
 		char[] text = texto.toCharArray();
 
-		char[] pattern = padraop.toCharArray();
+		char[] pad = padrao.toCharArray();
 
-		int pos = indexOf(text, pattern);
+		int pos = indexPadrao(text, pad);
 
-		if (pos == -1)
+		if (pos == -1) {
 
 			System.out.println("Padrão não encontrado!!");
+		}
 
-		else
+		else {
 
 			System.out.println("Padrão encontrado na Posição : " + pos);
-
+		}
 	}
 
 	/** Função para calcular o índice de padrão substring **/
 
-	public int indexOf(char[] text, char[] pattern) {
+	public int indexPadrao(char[] texto, char[] padrao) {
 
-		if (pattern.length == 0)
+		if (padrao.length == 0) {
 
 			return 0;
+		}
 
-		int charTable[] = makeCharTable(pattern);
+		int charTable[] = criaTabelaChar(padrao);
 
-		int offsetTable[] = makeOffsetTable(pattern);
+		int offsetTable[] = criaTabelaSalto(padrao);
 
-		for (int i = pattern.length - 1, j; i < text.length;) {
+		for (int i = padrao.length - 1, j; i < texto.length;) {
 
-			for (j = pattern.length - 1; pattern[j] == text[i]; --i, --j)
+			for (j = padrao.length - 1; padrao[j] == texto[i]; --i, --j) {
 
 				if (j == 0) {
 					qtdEncontrados++;
 					return i;
 				}
-				else
+				else {
 					qtdComparacoes++;
+				}
+			}
 
 			// i += pattern.length - j; // For naive method
 
-			i += Math.max(offsetTable[pattern.length - 1 - j],
-					charTable[text[i]]);
+			i += Math.max(offsetTable[padrao.length - 1 - j],
+					charTable[texto[i]]);
 
 		}
 
@@ -62,23 +66,25 @@ public class BoyerMoore extends Busca {
 
 	}
 
-	/** Faz a tabela de salto com base nas informações de caráter incompatíveis **/
+	/** Cria a tabela de salto com base nas informações de caráter incompatíveis **/
 
-	private int[] makeCharTable(char[] pattern) {
+	private int[] criaTabelaChar(char[] padrao) {
 
 		final int ALPHABET_SIZE = 256;
 
-		int[] table = new int[ALPHABET_SIZE];
+		int[] tabela = new int[ALPHABET_SIZE];
 
-		for (int i = 0; i < table.length; ++i)
+		for (int i = 0; i < tabela.length; ++i) {
 
-			table[i] = pattern.length;
+			tabela[i] = padrao.length;
+		}
 
-		for (int i = 0; i < pattern.length - 1; ++i)
+		for (int i = 0; i < padrao.length - 1; ++i) {
 
-			table[pattern[i]] = pattern.length - 1 - i;
+			tabela[padrao[i]] = padrao.length - 1 - i;
+		}
 
-		return table;
+		return tabela;
 
 	}
 
@@ -87,45 +93,46 @@ public class BoyerMoore extends Busca {
 	 * ocorre incompatibilidade.
 	 **/
 
-	private static int[] makeOffsetTable(char[] pattern) {
+	private int[] criaTabelaSalto (char[] pattern) {
 
-		int[] table = new int[pattern.length];
+		int[] tabela = new int[pattern.length];
 
 		int lastPrefixPosition = pattern.length;
 
 		for (int i = pattern.length - 1; i >= 0; --i) {
 
-			if (isPrefix(pattern, i + 1))
+			if (isPrefixo(pattern, i + 1))
 
 				lastPrefixPosition = i + 1;
 
-			table[pattern.length - 1 - i] = lastPrefixPosition - i
+			tabela[pattern.length - 1 - i] = lastPrefixPosition - i
 					+ pattern.length - 1;
 
 		}
 
 		for (int i = 0; i < pattern.length - 1; ++i) {
 
-			int slen = suffixLength(pattern, i);
+			int slen = tamanhoSufixo(pattern, i);
 
-			table[slen] = pattern.length - 1 - i + slen;
+			tabela[slen] = pattern.length - 1 - i + slen;
 
 		}
 
-		return table;
+		return tabela;
 
 	}
 
 	/** função para verificar se [p: fim] é o prefixo padrão **/
 
-	private static boolean isPrefix(char[] pattern, int p) {
+	private boolean isPrefixo (char[] padrao, int p) {
 
-		for (int i = p, j = 0; i < pattern.length; ++i, ++j)
+		for (int i = p, j = 0; i < padrao.length; ++i, ++j) {
 
-			if (pattern[i] != pattern[j])
+			if (padrao[i] != padrao[j]) {
 
 				return false;
-
+			}
+		}
 		return true;
 
 	}
@@ -134,14 +141,15 @@ public class BoyerMoore extends Busca {
 	 * Função que retorna o tamanho máximo da substring ends at p e se é sufixo
 	 **/
 
-	private static int suffixLength(char[] pattern, int p) {
+	private int tamanhoSufixo(char[] pattern, int p) {
 
 		int len = 0;
 
 		for (int i = p, j = pattern.length - 1; i >= 0
-				&& pattern[i] == pattern[j]; --i, --j)
+				&& pattern[i] == pattern[j]; --i, --j) {
 
 			len += 1;
+		}
 
 		return len;
 
