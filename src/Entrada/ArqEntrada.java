@@ -66,9 +66,7 @@ public class ArqEntrada {
 			String[] lista = texto.get(linha).split(" ");
 			elem = sortear(0, lista.length);
 			padrao = lista[elem];
-			System.out.print(padrao+" -> ");
 			padrao = padrao.replaceAll("[().,;:!?]+","");
-			System.out.println(padrao);
 			if (!padroes.contains(padrao))
 				padroes.add(padrao);
 			else

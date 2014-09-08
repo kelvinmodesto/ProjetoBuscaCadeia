@@ -49,6 +49,7 @@ public class Teste {
 	private void gerarPadroes() {
 		System.out.println("--------------Texto--------------");
 		arqEntrada.imprimirTexto();
+		System.out.println("----------Fim do Texto-----------");
 		System.out.println("Qtd de Padroes: " + arqEntrada.getQtdPadroes());
 		System.out.println("-------------Padroes--------------");
 		arqEntrada.imprimirPadroes();
@@ -67,7 +68,7 @@ public class Teste {
 			buscarPorKMP(arqEntrada.getPadrao(i));
 			System.out.println();
 		}
-		System.out.println("-------------Por Boyer Moore--------------");
+		System.out.println("---------Por Boyer Moore----------");
 		for (int i = 0; i < arqEntrada.getQtdPadroes(); i++) {
 			buscarPorBoyerMoore(arqEntrada.getPadrao(i));
 			System.out.println();
