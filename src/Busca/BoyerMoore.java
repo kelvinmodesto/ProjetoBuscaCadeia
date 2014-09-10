@@ -8,7 +8,7 @@ public class BoyerMoore extends Busca {
 		super(texto);
 	}
 
-	/** Função para calcular o índice de padrão substring **/
+	/** Funcao para calcular o indice de padrao substring **/
 
 	public int indexPadrao(char[] texto, char[] padrao) {
 
@@ -44,7 +44,7 @@ public class BoyerMoore extends Busca {
 
 	}
 
-	/** Cria a tabela de salto com base nas informações de caráter incompatíveis **/
+	/** Cria a tabela de salto com base nas informacoes de carater incompativeis **/
 
 	private int[] criaTabelaChar(char[] padrao) {
 
@@ -59,7 +59,7 @@ public class BoyerMoore extends Busca {
 
 		for (int i = 0; i < padrao.length - 1; ++i) {
 
-			tabela[padrao[i]] = padrao.length - 1 - i;
+			tabela[padrao[i]] = padrao.length;
 		}
 
 		return tabela;
@@ -67,7 +67,7 @@ public class BoyerMoore extends Busca {
 	}
 
 	/**
-	 * Faz a tabela de salto com base na verificação de deslocamento em que
+	 * Faz a tabela de salto com base na verificacao de deslocamento em que
 	 * ocorre incompatibilidade.
 	 **/
 
@@ -100,7 +100,7 @@ public class BoyerMoore extends Busca {
 
 	}
 
-	/** função para verificar se [p: fim] é o prefixo padrão **/
+	/** funcao para verificar se [p: fim] e o prefixo padrao **/
 
 	private boolean isPrefixo(char[] padrao, int p) {
 
@@ -116,7 +116,7 @@ public class BoyerMoore extends Busca {
 	}
 
 	/**
-	 * Função que retorna o tamanho máximo da substring ends at p e se é sufixo
+	 * Funcao que retorna o tamanho maximo da substring ends at p e se e sufixo
 	 **/
 
 	private int tamanhoSufixo(char[] pattern, int p) {
@@ -133,7 +133,7 @@ public class BoyerMoore extends Busca {
 
 	}
 
-	/** Procurando Padrão **/
+	/** Procurando Padrao **/
 
 	public void procuraPadrao(String texto, String padrao) {
 
