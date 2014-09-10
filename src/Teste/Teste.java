@@ -4,6 +4,7 @@ import Busca.BoyerMoore;
 import Busca.ForcaBruta;
 import Busca.KMP;
 import Entrada.ArqEntrada;
+import Relatorio.RelatorioBarra;
 
 public class Teste {
 
@@ -11,12 +12,14 @@ public class Teste {
 	private ForcaBruta forcaBruta;
 	private KMP kmp;
 	private BoyerMoore bmoore;
+	private RelatorioBarra rL;
 	
 	public Teste() {
 		arqEntrada = new ArqEntrada();
 		forcaBruta = new ForcaBruta(arqEntrada.getTexto());
 		kmp = new KMP(arqEntrada.getTexto());
 		bmoore = new BoyerMoore(arqEntrada.getTexto());
+		rL = new RelatorioBarra("Gráfico");
 	}
 	
 	private void buscarPorKMP(String padrao) {
