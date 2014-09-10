@@ -25,12 +25,12 @@ public class RelatorioBarra extends ApplicationFrame {
 	private KMP kmp;
 	private BoyerMoore bm;
 
-	public RelatorioBarra(String title) {
-		super(title);
+	public RelatorioBarra() {
+		super("Grafico em Barra");
 		iniciar();
 	}
 
-	public void iniciar() {
+	private void iniciar() {
 		arqEntrada = new ArqEntrada();
 		fb = new ForcaBruta(arqEntrada.getTexto());
 		kmp = new KMP(arqEntrada.getTexto());
@@ -54,25 +54,23 @@ public class RelatorioBarra extends ApplicationFrame {
 
 		// create the dataset...
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		System.out.println("Quantidade de padroes: "
-				+ arqEntrada.getQtdPadroes());
 		// Forca Bruta
-		for (int i = 0; i < arqEntrada.getPadroes().size(); i++) {
-			fb.buscar(arqEntrada.getPadroes().get(i));
-			dataset.addValue(fb.getQtdComparacoes(), seriesFB, arqEntrada
-					.getPadroes().get(i));
+		for (int i = 0; i < arqEntrada.getQtdPadroes(); i++) {
+			fb.buscar(arqEntrada.getPadrao(i));
+			dataset.addValue(fb.getQtdComparacoes(), seriesFB,
+					arqEntrada.getPadrao(i));
 		}
 		// KMP
-		for (int i = 0; i < arqEntrada.getPadroes().size(); i++) {
-			kmp.buscar(arqEntrada.getPadroes().get(i));
-			dataset.addValue(kmp.getQtdComparacoes(), seriesKMP, arqEntrada
-					.getPadroes().get(i));
+		for (int i = 0; i < arqEntrada.getQtdPadroes(); i++) {
+			kmp.buscar(arqEntrada.getPadrao(i));
+			dataset.addValue(kmp.getQtdComparacoes(), seriesKMP,
+					arqEntrada.getPadrao(i));
 		}
 		// Boyer-Moore
-		for (int i = 0; i < arqEntrada.getPadroes().size(); i++) {
-			bm.buscar(arqEntrada.getPadroes().get(i));
-			dataset.addValue(bm.getQtdComparacoes(), seriesBM, arqEntrada
-					.getPadroes().get(i));
+		for (int i = 0; i < arqEntrada.getQtdPadroes(); i++) {
+			bm.buscar(arqEntrada.getPadrao(i));
+			dataset.addValue(bm.getQtdComparacoes(), seriesBM,
+					arqEntrada.getPadrao(i));
 		}
 		return dataset;
 
