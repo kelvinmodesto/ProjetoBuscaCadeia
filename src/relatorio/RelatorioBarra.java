@@ -1,4 +1,4 @@
-package Relatorio;
+package relatorio;
 
 import java.awt.Dimension;
 
@@ -10,12 +10,16 @@ import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 import org.jfree.ui.ApplicationFrame;
 
-import Busca.BoyerMoore;
-import Busca.ForcaBruta;
-import Busca.KMP;
-import Entrada.ArqEntrada;
+import busca.BoyerMoore;
+import busca.ForcaBruta;
+import busca.KMP;
+import entrada.ArqEntrada;
 
 public class RelatorioBarra extends ApplicationFrame {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArqEntrada arqEntrada;
 	private ForcaBruta fb;
 	private KMP kmp;
@@ -32,13 +36,13 @@ public class RelatorioBarra extends ApplicationFrame {
 		kmp = new KMP(arqEntrada.getTexto());
 		bm = new BoyerMoore(arqEntrada.getTexto());
 
-        final CategoryDataset dataset = createDataset();
-        final JFreeChart chart = createChart(dataset);
-        final ChartPanel chartPanel = new ChartPanel(chart);
-        chartPanel.setPreferredSize(new Dimension(500, 270));
-        setContentPane(chartPanel);
-        pack();
-        setVisible(true);
+		final CategoryDataset dataset = createDataset();
+		final JFreeChart chart = createChart(dataset);
+		final ChartPanel chartPanel = new ChartPanel(chart);
+		chartPanel.setPreferredSize(new Dimension(500, 270));
+		setContentPane(chartPanel);
+		pack();
+		setVisible(true);
 	}
 
 	private CategoryDataset createDataset() {
@@ -50,7 +54,8 @@ public class RelatorioBarra extends ApplicationFrame {
 
 		// create the dataset...
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-		System.out.println("Quantidade de padroes: " + arqEntrada.getQtdPadroes());
+		System.out.println("Quantidade de padroes: "
+				+ arqEntrada.getQtdPadroes());
 		// Forca Bruta
 		for (int i = 0; i < arqEntrada.getPadroes().size(); i++) {
 			fb.buscar(arqEntrada.getPadroes().get(i));

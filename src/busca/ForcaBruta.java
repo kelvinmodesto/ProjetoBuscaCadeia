@@ -1,4 +1,4 @@
-package Busca;
+package busca;
 
 import java.util.ArrayList;
 
