@@ -59,7 +59,7 @@ public class BoyerMoore extends Busca {
 
 		for (int i = 0; i < padrao.length - 1; ++i) {
 
-			tabela[padrao[i]] = padrao.length;
+			tabela[padrao[i]] = padrao.length - 1 - i;
 		}
 
 		return tabela;
@@ -129,6 +129,7 @@ public class BoyerMoore extends Busca {
 			len += 1;
 		}
 
+		
 		return len;
 
 	}
@@ -146,10 +147,11 @@ public class BoyerMoore extends Busca {
 		if (pos == -1) {
 
 			// Padrao nao encontrado
+			System.out.println("Não achei");
 		}
 
 		else {
-
+			System.out.println("Achei");
 			// Padrao encontrado
 		}
 	}

@@ -11,7 +11,7 @@ public class Teste {
 	private ForcaBruta forcaBruta;
 	private KMP kmp;
 	private BoyerMoore bmoore;
-
+	
 	public Teste() {
 		arqEntrada = new ArqEntrada();
 		forcaBruta = new ForcaBruta(arqEntrada.getTexto());
