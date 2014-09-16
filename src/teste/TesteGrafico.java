@@ -13,7 +13,7 @@ public class TesteGrafico {
 	}
 	
 	public static void main(String[] args) {
-		new TesteGrafico(false);
+		new TesteGrafico(true);
 	}
 		
 }

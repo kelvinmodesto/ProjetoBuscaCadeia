@@ -57,19 +57,34 @@ public class ArqEntrada {
 		qtdPadroes = sortear(1, 20);
 	}
 
+	private String filtrarPadrao(String padrao) {
+		String regex = "[^a-zA-Z0-9]+";
+		String [] aux;
+		aux = padrao.split(regex);
+		for (int i = 0; i < aux.length; i++) {
+			padrao = aux[i];
+			if(!padrao.equals(""))
+				return padrao;
+		}
+		return "";
+	}
+	
 	private void calcularPadroes() {
 		calcularNumPadroes();
-		String padrao;int linha,elem;
-		for (int qtd = 0; qtd < qtdPadroes; qtd++) {
+		String padrao;
+		int linha, elem;
+		String[] lista;
+		int qtd = 0;
+		while (qtd < qtdPadroes) {
 			linha = sortear(0, texto.size());
-			String[] lista = texto.get(linha).split(" ");
+			lista = texto.get(linha).split(" ");
 			elem = sortear(0, lista.length);
 			padrao = lista[elem];
-			padrao = padrao.replaceAll("[().,;:!?-]+","");
-			if (!padroes.contains(padrao))
+			padrao = filtrarPadrao(padrao);
+			if (!padrao.equals("")&&!padroes.contains(padrao)) {
 				padroes.add(padrao);
-			else
-				qtd--;
+				qtd++;
+			}
 		}
 	}
 
@@ -87,10 +102,6 @@ public class ArqEntrada {
 		for (int i = 0; i < padroes.size(); i++) {
 			System.out.println(padroes.get(i));
 		}
-	}
-	
-	public static void main(String[] args) {
-		new ArqEntrada();
 	}
 
 	public ArrayList<String> getPadroes() {

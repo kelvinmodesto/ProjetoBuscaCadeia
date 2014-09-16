@@ -11,21 +11,19 @@ public class Teste {
 	private ForcaBruta forcaBruta;
 	private KMP kmp;
 	private BoyerMoore bmoore;
-	
+
 	public Teste() {
 		arqEntrada = new ArqEntrada();
 		forcaBruta = new ForcaBruta(arqEntrada.getTexto());
 		kmp = new KMP(arqEntrada.getTexto());
 		bmoore = new BoyerMoore(arqEntrada.getTexto());
 	}
-	
+
 	private void buscarPorKMP(String padrao) {
 		System.out.println("Buscando o padrao: " + padrao);
 		kmp.buscar(padrao);
-		System.out.println("Qtd de Comparacoes: "
-				+ kmp.getQtdComparacoes());
-		System.out.println("Qtd de Encontrados: "
-				+ kmp.getQtdEncontrados());
+		System.out.println("Qtd de Comparacoes: " + kmp.getQtdComparacoes());
+		System.out.println("Qtd de Encontrados: " + kmp.getQtdEncontrados());
 	}
 
 	private void buscarPorForcaBruta(String padrao) {
@@ -36,14 +34,12 @@ public class Teste {
 		System.out.println("Qtd de Encontrados: "
 				+ forcaBruta.getQtdEncontrados());
 	}
-	
+
 	private void buscarPorBoyerMoore(String padrao) {
 		System.out.println("Buscando o padrao: " + padrao);
 		bmoore.buscar(padrao);
-		System.out.println("Qtd de Comparacoes: "
-				+ bmoore.getQtdComparacoes());
-		System.out.println("Qtd de Encontrados: "
-				+ bmoore.getQtdEncontrados());
+		System.out.println("Qtd de Comparacoes: " + bmoore.getQtdComparacoes());
+		System.out.println("Qtd de Encontrados: " + bmoore.getQtdEncontrados());
 	}
 
 	private void gerarPadroes() {
@@ -60,7 +56,7 @@ public class Teste {
 		System.out.println("-------Buscando os Padroes--------");
 		System.out.println("---------Por Forca Bruta----------");
 		for (int i = 0; i < arqEntrada.getQtdPadroes(); i++) {
-			buscarPorForcaBruta(arqEntrada.getPadrao(i));			
+			buscarPorForcaBruta(arqEntrada.getPadrao(i));
 			System.out.println();
 		}
 		System.out.println("-------------Por KMP--------------");
