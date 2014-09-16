@@ -58,7 +58,7 @@ public class ArqEntrada {
 	}
 
 	private String filtrarPadrao(String padrao) {
-		String regex = "[^a-zA-Z0-9]+";
+		String regex = "[^A-Za-zÀ-ú0-9'-]+";
 		String [] aux;
 		aux = padrao.split(regex);
 		for (int i = 0; i < aux.length; i++) {
